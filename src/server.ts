@@ -1,6 +1,7 @@
 import app from "./app";
+import config from "./config";
 
-const PORT = 6006;
-app.listen(PORT, () => {
-  console.log(`server is running of port: ${PORT}`);
+app.listen(config.port, () => {
+  console.log("is this running", config.database_url);
+  console.log(`server is running of port: ${config.port}`);
 });
