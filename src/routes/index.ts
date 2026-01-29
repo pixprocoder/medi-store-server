@@ -1,12 +1,12 @@
 import express from "express";
-import { postRouters } from "../modules/post/post.route";
+import { medicineRouter } from "../modules/medicine/medicine.route";
 
 const router = express.Router();
 
 const moduleRoutes = [
   {
-    path: "/posts",
-    route: postRouters,
+    path: "/medicines",
+    route: medicineRouter,
   },
 ];
 
