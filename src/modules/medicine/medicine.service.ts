@@ -31,6 +31,13 @@ const createMedicine = async (data: any, userId: string) => {
 
   return result;
 };
+
+const getMedicines = async () => {
+  const result = await prisma.medicine.findMany();
+  return result;
+};
+
 export const medicineService = {
   createMedicine,
+  getMedicines,
 };

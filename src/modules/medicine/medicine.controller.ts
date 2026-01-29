@@ -30,7 +30,26 @@ const createMedicine = async (req: Request, res: Response) => {
     });
   }
 };
+const getMedicines = async (req: Request, res: Response) => {
+  try {
+    const result = await medicineService.getMedicines();
+
+    sendResponse(res, {
+      statusCode: StatusCodes.OK,
+      message: "Medicines Fetched Successfully",
+      success: true,
+      data: result,
+    });
+  } catch (e) {
+    sendResponse(res, {
+      statusCode: StatusCodes.BAD_REQUEST,
+      success: false,
+      message: "Failed To Fetch Medicine",
+    });
+  }
+};
 
 export const medicineController = {
   createMedicine,
+  getMedicines,
 };
