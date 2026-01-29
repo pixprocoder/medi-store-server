@@ -15,8 +15,9 @@ declare global {
     }
   }
 }
+// middleware
 
-const auth = (...roles: UserRole[]) => {
+const authMiddleware = (...roles: UserRole[]) => {
   return async (req: Request, res: Response, next: NextFunction) => {
     try {
       // get user session
@@ -61,4 +62,4 @@ const auth = (...roles: UserRole[]) => {
   };
 };
 
-export default auth;
+export default authMiddleware;
