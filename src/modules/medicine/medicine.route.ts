@@ -6,6 +6,7 @@ import { UserRole } from "../../constants/user";
 const router = express.Router();
 
 router.get("/", medicineController.getMedicines);
+router.get("/:id", medicineController.getSingleMedicine);
 
 router.post(
   "/create",

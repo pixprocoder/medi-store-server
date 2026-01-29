@@ -37,7 +37,17 @@ const getMedicines = async () => {
   return result;
 };
 
+const getSingleMedicine = async (id: string) => {
+  const result = await prisma.medicine.findUniqueOrThrow({
+    where: {
+      id,
+    },
+  });
+  return result;
+};
+
 export const medicineService = {
   createMedicine,
   getMedicines,
+  getSingleMedicine,
 };

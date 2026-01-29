@@ -30,6 +30,7 @@ const createMedicine = async (req: Request, res: Response) => {
     });
   }
 };
+// get medicine
 const getMedicines = async (req: Request, res: Response) => {
   try {
     const result = await medicineService.getMedicines();
@@ -48,8 +49,32 @@ const getMedicines = async (req: Request, res: Response) => {
     });
   }
 };
+const getSingleMedicine = async (req: Request, res: Response) => {
+  try {
+    const { id } = req.params;
+    console.log(id);
+    if (!id) {
+      throw new Error("is is required");
+    }
+    const result = await medicineService.getSingleMedicine(id as string);
+
+    sendResponse(res, {
+      statusCode: StatusCodes.OK,
+      message: "Medicine Fetched Successfully",
+      success: true,
+      data: result,
+    });
+  } catch (e) {
+    sendResponse(res, {
+      statusCode: StatusCodes.BAD_REQUEST,
+      success: false,
+      message: "Failed To Fetch Medicine",
+    });
+  }
+};
 
 export const medicineController = {
   createMedicine,
   getMedicines,
+  getSingleMedicine,
 };
