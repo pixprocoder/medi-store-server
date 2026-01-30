@@ -24,10 +24,17 @@ router.post(
   sellerController.createMedicine,
 );
 
+// update
 router.put(
   "/medicines/:id",
   authMiddleware(UserRole.SELLER),
   sellerController.updateOwnMedicine,
+);
+// delete
+router.delete(
+  "/medicines/:id",
+  authMiddleware(UserRole.SELLER),
+  sellerController.deleteOwnMedicine,
 );
 
 export const sellerRouter: Router = router;
