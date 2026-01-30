@@ -87,7 +87,17 @@ const deleteOwnMedicine = async (medicineId: string, sellerId: string) => {
 
 // get
 const getOrders = async () => {
-  const result = await prisma.order.findMany();
+  const result = await prisma.order.findMany({
+    include: {
+      items: {
+        select: {
+          quantity: true,
+          price: true,
+          medicineId: true,
+        },
+      },
+    },
+  });
   return result;
 };
 
