@@ -5,10 +5,9 @@ import { UserRole } from "../../constants/user";
 
 const router = express.Router();
 
-router.post(
-  "/create",
-  authMiddleware(UserRole.SELLER),
-  medicineController.createMedicine,
-);
+// get routes
+router.get("/categories", medicineController.getCategories);
+router.get("/medicines", medicineController.getMedicines);
+router.get("/medicines/:id", medicineController.getSingleMedicine);
 
 export const medicineRouter: Router = router;
