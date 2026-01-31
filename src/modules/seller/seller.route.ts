@@ -11,11 +11,6 @@ router.get(
   sellerController.getOrders,
 );
 // patch
-router.patch(
-  "/orders/:id",
-  authMiddleware(UserRole.SELLER),
-  sellerController.updateOrderStatus,
-);
 
 // post routes
 router.post(
@@ -24,10 +19,23 @@ router.post(
   sellerController.createMedicine,
 );
 
+// update
 router.put(
   "/medicines/:id",
   authMiddleware(UserRole.SELLER),
   sellerController.updateOwnMedicine,
+);
+
+router.patch(
+  "/orders/:id",
+  authMiddleware(UserRole.SELLER),
+  sellerController.updateOrderStatus,
+);
+// delete
+router.delete(
+  "/medicines/:id",
+  authMiddleware(UserRole.SELLER),
+  sellerController.deleteOwnMedicine,
 );
 
 export const sellerRouter: Router = router;
