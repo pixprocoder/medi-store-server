@@ -1,8 +1,8 @@
 import express, { type Application } from "express";
 import cors from "cors";
-import routers from "./routes";
 import { toNodeHandler } from "better-auth/node";
 import { auth } from "./lib/auth";
+import routers from "./routes";
 
 const app: Application = express();
 

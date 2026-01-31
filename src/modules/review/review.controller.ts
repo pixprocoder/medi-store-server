@@ -13,7 +13,6 @@ const createReview = async (req: Request, res: Response) => {
     }
 
     const { id } = req.params;
-
     const result = await reviewService.createReview(
       req.body,
       id as string,
