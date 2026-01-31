@@ -3,7 +3,7 @@
   "type": "module",
   "private": true,
   "scripts": {
-    "start": "bunx tsx ./src/server.ts",
+    "start": "node ./src/server.ts",
     "dev": "bunx tsx watch ./src/server.ts",
     "build": "tsc"
   },
