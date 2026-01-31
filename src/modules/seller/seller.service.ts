@@ -34,11 +34,11 @@ const createMedicine = async (data: any, userId: string) => {
 
 // update
 const updateOwnMedicine = async (
-  data: any,
+  payload: any,
   medicineId: string,
   sellerId: string,
 ) => {
-  const medicineData = await prisma.medicine.findUniqueOrThrow({
+  const medicineData = await prisma.medicine.findFirstOrThrow({
     where: {
       id: medicineId,
     },
@@ -56,7 +56,7 @@ const updateOwnMedicine = async (
     where: {
       id: medicineData.id,
     },
-    data,
+    data: payload,
   });
   return result;
 };
@@ -102,12 +102,14 @@ const getOrders = async () => {
 };
 
 // update
-const updateOrderStatus = async (data: any, orderId: string) => {
+const updateOrderStatus = async (payload: any, orderId: string) => {
+  console.log(payload);
+  console.log(orderId);
   const result = await prisma.order.update({
     where: {
       id: orderId,
     },
-    data,
+    data: payload,
   });
   return result;
 };

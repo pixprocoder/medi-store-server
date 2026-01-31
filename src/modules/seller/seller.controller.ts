@@ -37,13 +37,13 @@ const updateOwnMedicine = async (req: Request, res: Response) => {
     if (!user) {
       throw new Error("You are unauthorized!");
     }
-    const { id: medicineId } = req.params;
-    if (!medicineId) {
+    const { id } = req.params;
+    if (!id) {
       throw new Error("Id is required");
     }
     const result = await sellerService.updateOwnMedicine(
       req.body,
-      medicineId as string,
+      id as string,
       user.id,
     );
 
@@ -58,7 +58,7 @@ const updateOwnMedicine = async (req: Request, res: Response) => {
     sendResponse(res, {
       statusCode: StatusCodes.BAD_REQUEST,
       success: false,
-      message: "Failed To Update Medicine",
+      message: `${e} ` || "Failed to update status",
     });
   }
 };
