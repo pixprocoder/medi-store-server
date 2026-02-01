@@ -86,8 +86,11 @@ const deleteOwnMedicine = async (medicineId: string, sellerId: string) => {
 };
 
 // get
-const getOrders = async () => {
+const getOwnOrders = async (sellerId: string) => {
   const result = await prisma.order.findMany({
+    where: {
+      sellerId,
+    },
     include: {
       items: {
         select: {
@@ -103,8 +106,6 @@ const getOrders = async () => {
 
 // update
 const updateOrderStatus = async (payload: any, orderId: string) => {
-  console.log(payload);
-  console.log(orderId);
   const result = await prisma.order.update({
     where: {
       id: orderId,
@@ -115,7 +116,7 @@ const updateOrderStatus = async (payload: any, orderId: string) => {
 };
 
 export const sellerService = {
-  getOrders,
+  getOwnOrders,
   createMedicine,
   updateOwnMedicine,
   deleteOwnMedicine,

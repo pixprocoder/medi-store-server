@@ -60,6 +60,91 @@ const createReview = async (
   return review;
 };
 
+export const getMedicineReviews = async (medicineId: string) => {
+  const result = await prisma.review.findMany({
+    where: {
+      medicineId,
+    },
+  });
+
+  return result;
+};
+
+export const getOwnReviews = async (customerId: string) => {
+  const result = await prisma.review.findMany({
+    where: {
+      customerId,
+    },
+    include: {
+      medicine: {
+        select: {
+          name: true,
+          image: true,
+          price: true,
+        },
+      },
+    },
+  });
+  return result;
+};
+
+export const updateOwnReview = async (
+  payload: any,
+  reviewId: string,
+  customerId: string,
+) => {
+  const existingReview = await prisma.review.findFirst({
+    where: {
+      id: reviewId,
+    },
+  });
+
+  if (!existingReview) {
+    throw new Error("Review not found");
+  }
+
+  if (existingReview.customerId !== customerId) {
+    throw new Error("You are not the author of this review");
+  }
+
+  const result = await prisma.review.update({
+    where: {
+      id: reviewId,
+    },
+    data: payload,
+  });
+
+  return result;
+};
+
+export const deleteOwnReview = async (reviewId: string, customerId: string) => {
+  const existingReview = await prisma.review.findFirst({
+    where: {
+      id: reviewId,
+    },
+  });
+
+  if (!existingReview) {
+    throw new Error("Review not found");
+  }
+
+  if (existingReview.customerId !== customerId) {
+    throw new Error("You are not the author of this review");
+  }
+
+  const result = await prisma.review.delete({
+    where: {
+      id: reviewId,
+    },
+  });
+
+  return result;
+};
+
 export const reviewService = {
   createReview,
+  getMedicineReviews,
+  getOwnReviews,
+  updateOwnReview,
+  deleteOwnReview,
 };

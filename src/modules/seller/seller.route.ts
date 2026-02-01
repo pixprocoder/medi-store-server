@@ -8,7 +8,7 @@ const router = express.Router();
 router.get(
   "/orders",
   authMiddleware(UserRole.SELLER),
-  sellerController.getOrders,
+  sellerController.getOwnOrders,
 );
 // patch
 

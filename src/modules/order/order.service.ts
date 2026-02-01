@@ -104,22 +104,52 @@ const createOrder = async (payload: any, customerId: string) => {
   return orders;
 };
 
-const getOrders = async () => {
-  const result = await prisma.order.findMany();
-  return result;
-};
-
-const getOrderDetails = async (id: string) => {
-  const result = await prisma.order.findFirstOrThrow({
+const getOwnOrders = async (customerId: string) => {
+  const result = await prisma.order.findMany({
     where: {
-      id,
+      customerId,
     },
   });
   return result;
 };
 
+const getOrderDetails = async (orderId: string, customerId: string) => {
+  const order = await prisma.order.findFirst({
+    where: {
+      id: orderId,
+      customerId: customerId,
+    },
+    include: {
+      items: {
+        include: {
+          medicine: {
+            select: {
+              name: true,
+              image: true,
+              manufacturer: true,
+            },
+          },
+        },
+      },
+      seller: {
+        select: {
+          name: true,
+          email: true,
+          phone: true,
+        },
+      },
+    },
+  });
+
+  if (!order) {
+    throw new Error("Order not found or access denied");
+  }
+
+  return order;
+};
+
 export const orderService = {
   createOrder,
-  getOrders,
+  getOwnOrders,
   getOrderDetails,
 };
