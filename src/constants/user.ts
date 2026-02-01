@@ -3,3 +3,9 @@ export enum UserRole {
   SELLER = "SELLER",
   ADMIN = "ADMIN",
 }
+
+export enum UserStatus {
+  ACTIVE = "ACTIVE",
+  BANNED = "BANNED",
+  SUSPENDED = "SUSPENDED",
+}
