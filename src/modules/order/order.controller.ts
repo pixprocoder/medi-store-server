@@ -27,9 +27,13 @@ const createOrder = async (req: Request, res: Response) => {
     });
   }
 };
-const getOrders = async (req: Request, res: Response) => {
+const getOwnOrders = async (req: Request, res: Response) => {
   try {
-    const result = await orderService.getOrders();
+    const user = req.user;
+    if (!user) {
+      throw new Error("user is require");
+    }
+    const result = await orderService.getOwnOrders(user.id as string);
 
     sendResponse(res, {
       statusCode: StatusCodes.OK,
@@ -41,14 +45,24 @@ const getOrders = async (req: Request, res: Response) => {
     sendResponse(res, {
       statusCode: StatusCodes.BAD_REQUEST,
       success: false,
-      message: "Failed To Fetch Order",
+      message: `${e}` || "Failed To Fetch Order",
     });
   }
 };
 const getOrderDetails = async (req: Request, res: Response) => {
   try {
+    const user = req.user;
+    if (!user) {
+      throw new Error("user id is required");
+    }
     const { id } = req.params;
-    const result = await orderService.getOrderDetails(id as string);
+    if (!id) {
+      throw new Error(" id is required");
+    }
+    const result = await orderService.getOrderDetails(
+      id as string,
+      user.id as string,
+    );
 
     sendResponse(res, {
       statusCode: StatusCodes.OK,
@@ -60,12 +74,12 @@ const getOrderDetails = async (req: Request, res: Response) => {
     sendResponse(res, {
       statusCode: StatusCodes.BAD_REQUEST,
       success: false,
-      message: "Failed To Fetch Order Details",
+      message: `${e}` || "Failed To Fetch Order Details",
     });
   }
 };
 export const orderController = {
-  getOrders,
+  getOwnOrders,
   getOrderDetails,
   createOrder,
 };

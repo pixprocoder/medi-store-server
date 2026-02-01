@@ -6,8 +6,16 @@ import { UserRole } from "../../constants/user";
 const router = express.Router();
 
 // get routes
-router.get("/", orderController.getOrders);
-router.get("/:id", orderController.getOrderDetails);
+router.get(
+  "/",
+  authMiddleware(UserRole.CUSTOMER),
+  orderController.getOwnOrders,
+);
+router.get(
+  "/:id",
+  authMiddleware(UserRole.CUSTOMER),
+  orderController.getOrderDetails,
+);
 // post routes
 router.post(
   "/:id",

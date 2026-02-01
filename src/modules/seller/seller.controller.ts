@@ -91,9 +91,13 @@ const deleteOwnMedicine = async (req: Request, res: Response) => {
   }
 };
 // get
-const getOrders = async (req: Request, res: Response) => {
+const getOwnOrders = async (req: Request, res: Response) => {
   try {
-    const result = await sellerService.getOrders();
+    const user = req.user;
+    if (!user) {
+      throw new Error("user is require");
+    }
+    const result = await sellerService.getOwnOrders(user.id as string);
 
     sendResponse(res, {
       statusCode: StatusCodes.OK,
@@ -102,11 +106,10 @@ const getOrders = async (req: Request, res: Response) => {
       data: result,
     });
   } catch (e) {
-    console.log(e);
     sendResponse(res, {
       statusCode: StatusCodes.BAD_REQUEST,
       success: false,
-      message: "Failed To Fetch Orders",
+      message: `${e}` || "Failed To Fetch Orders",
     });
   }
 };
@@ -139,7 +142,7 @@ const updateOrderStatus = async (req: Request, res: Response) => {
 };
 
 export const sellerController = {
-  getOrders,
+  getOwnOrders,
   createMedicine,
   updateOwnMedicine,
   updateOrderStatus,
