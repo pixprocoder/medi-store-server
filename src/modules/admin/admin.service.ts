@@ -1,6 +1,6 @@
-import { UserRole } from "../../constants/user";
-import { prisma } from "../../lib/prisma";
-import { IUser } from "../../types";
+import { UserRole } from "../../constants/user.js";
+import { prisma } from "../../lib/prisma.js";
+import { IUser } from "../../types/index.js";
 
 // user management
 const getAllUser = async () => {

@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import { StatusCodes } from "http-status-codes";
-import sendResponse from "../../helpers/sendResponseHelper";
-import { orderService } from "./order.service";
+import sendResponse from "../../helpers/sendResponseHelper.js";
+import { orderService } from "./order.service.js";
 
 const createOrder = async (req: Request, res: Response) => {
   try {

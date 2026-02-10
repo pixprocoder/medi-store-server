@@ -1,7 +1,7 @@
 import express, { Router } from "express";
-import { UserRole } from "../../constants/user";
-import authMiddleware from "../../middlewares/authMiddleware";
-import { adminController } from "./admin.controller";
+import { UserRole } from "../../constants/user.js";
+import authMiddleware from "../../middlewares/authMiddleware.js";
+import { adminController } from "./admin.controller.js";
 
 const router = express.Router();
 

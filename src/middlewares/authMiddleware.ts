@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from "express";
-import { UserRole } from "../constants/user";
-import { auth as betterAuth } from "../lib/auth";
+import { UserRole } from "../constants/user.js";
+import { auth as betterAuth } from "../lib/auth.js";
 
 declare global {
   namespace Express {

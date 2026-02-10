@@ -1,4 +1,4 @@
-import { prisma } from "../../lib/prisma";
+import { prisma } from "../../lib/prisma.js";
 
 const createOrder = async (payload: any, customerId: string) => {
   const { items, shippingAddress } = payload;
@@ -14,7 +14,7 @@ const createOrder = async (payload: any, customerId: string) => {
 
   // Validate stock for each item
   items.forEach((item: any) => {
-    const medicine = medicines.find((m) => m.id === item.medicineId);
+    const medicine = medicines.find((m: any) => m.id === item.medicineId);
     if (!medicine) throw new Error(`Medicine ${item.medicineId} not found`);
     if (medicine.stock < item.quantity)
       throw new Error(`Insufficient stock for ${medicine.name}`);
@@ -23,7 +23,7 @@ const createOrder = async (payload: any, customerId: string) => {
   // Group items by seller
   const groupedBySeller: Record<string, any[]> = {};
   items.forEach((item: any) => {
-    const medicine = medicines.find((m) => m.id === item.medicineId);
+    const medicine = medicines.find((m: any) => m.id === item.medicineId);
     if (!medicine) {
       return;
     }

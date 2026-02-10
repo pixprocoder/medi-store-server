@@ -1,4 +1,4 @@
-import { UserRole, UserStatus } from "../constants/user";
+import { UserRole, UserStatus } from "../constants/user.js";
 
 export interface IUser {
   id: string;

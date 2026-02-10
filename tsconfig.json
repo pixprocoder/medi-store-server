@@ -1,19 +1,15 @@
 {
   "compilerOptions": {
     "outDir": "./dist",
-    "rootDirs": ["./src", "./generated"],
+    "rootDirs": ["./src"],
     // Environment setup & latest features
     "lib": ["ESNext"],
     "target": "ESNext",
-    "module": "Preserve",
+    "module": "NodeNext",
     "moduleDetection": "force",
     "allowJs": true,
 
-    // Bundler mode
-    "moduleResolution": "bundler",
-    // "allowImportingTsExtensions": true,
-    // "verbatimModuleSyntax": true,
-    // "noEmit": true,
+    "moduleResolution": "NodeNext",
 
     // Best practices
     "strict": true,
@@ -27,6 +23,6 @@
     "noUnusedParameters": false,
     "noPropertyAccessFromIndexSignature": false
   },
-  "include": ["src/**/*", "generated/**/*"],
+  "include": ["src/**/*"],
   "exclude": ["node_modules"]
 }

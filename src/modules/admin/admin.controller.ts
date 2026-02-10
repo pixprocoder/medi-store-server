@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import { StatusCodes } from "http-status-codes";
-import sendResponse from "../../helpers/sendResponseHelper";
-import { adminService } from "./admin.service";
+import sendResponse from "../../helpers/sendResponseHelper.js";
+import { adminService } from "./admin.service.js";
 
 // user management
 const getAllUser = async (req: Request, res: Response) => {

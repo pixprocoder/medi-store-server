@@ -1,8 +1,8 @@
 import { betterAuth } from "better-auth";
 import { prismaAdapter } from "better-auth/adapters/prisma";
-import config from "../config";
-import { prisma } from "./prisma";
-import { UserRole } from "../constants/user";
+import config from "../config/index.js";
+import { prisma } from "./prisma.js";
+import { UserRole } from "../constants/user.js";
 
 export const auth = betterAuth({
   baseURL: config.auth.better_auth_base_url || "http://localhost:3000",
