@@ -13,6 +13,12 @@ export const auth = betterAuth({
   emailAndPassword: {
     enabled: true,
   },
+  socialProviders: {
+    google: {
+      clientId: config.auth.google_client_id!,
+      clientSecret: config.auth.google_client_secret,
+    },
+  },
   user: {
     additionalFields: {
       role: {

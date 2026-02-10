@@ -13,5 +13,7 @@ export default {
   auth: {
     better_auth_secret: process.env.BETTER_AUTH_SECRET,
     better_auth_base_url: process.env.BETTER_AUTH_BASE_URL,
+    google_client_id: process.env.GOOGLE_CLIENT_ID,
+    google_client_secret: process.env.GOOGLE_CLIENT_SECRET,
   },
 };
