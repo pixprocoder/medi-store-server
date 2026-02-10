@@ -2,7 +2,7 @@ import express, { type Application } from "express";
 import cors from "cors";
 import { toNodeHandler } from "better-auth/node";
 import { auth } from "./lib/auth";
-import routers from "./routes";
+import routers from "./routes/index";
 
 const app: Application = express();
 

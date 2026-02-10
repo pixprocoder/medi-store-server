@@ -1,6 +1,6 @@
 import { betterAuth } from "better-auth";
 import { prismaAdapter } from "better-auth/adapters/prisma";
-import config from "../config";
+import config from "../config/index";
 import { prisma } from "./prisma";
 import { UserRole } from "../constants/user";
 
