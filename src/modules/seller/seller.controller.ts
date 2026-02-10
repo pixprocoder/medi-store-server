@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import { StatusCodes } from "http-status-codes";
-import sendResponse from "../../helpers/sendResponseHelper.js";
-import { sellerService } from "./seller.service.js";
+import sendResponse from "../../helpers/sendResponseHelper";
+import { sellerService } from "./seller.service";
 
 const createMedicine = async (req: Request, res: Response) => {
   try {

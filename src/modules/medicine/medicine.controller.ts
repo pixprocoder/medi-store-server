@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import { StatusCodes } from "http-status-codes";
-import sendResponse from "../../helpers/sendResponseHelper.js";
-import { medicineService } from "./medicine.service.js";
+import sendResponse from "../../helpers/sendResponseHelper";
+import { medicineService } from "./medicine.service";
 
 const getCategories = async (req: Request, res: Response) => {
   try {

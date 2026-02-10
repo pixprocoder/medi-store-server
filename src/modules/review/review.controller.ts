@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import { StatusCodes } from "http-status-codes";
-import sendResponse from "../../helpers/sendResponseHelper.js";
-import { reviewService } from "./review.service.js";
+import sendResponse from "../../helpers/sendResponseHelper";
+import { reviewService } from "./review.service";
 
 const createReview = async (req: Request, res: Response) => {
   try {
