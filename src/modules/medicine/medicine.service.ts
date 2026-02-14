@@ -6,7 +6,11 @@ const getCategories = async () => {
 };
 
 const getMedicines = async () => {
-  const result = await prisma.medicine.findMany();
+  const result = await prisma.medicine.findMany({
+    include: {
+      category: true,
+    },
+  });
   return result;
 };
 

@@ -29,6 +29,7 @@ const createMedicine = async (data: any, userId: string) => {
     },
   });
 
+  console.log(result);
   return result;
 };
 
