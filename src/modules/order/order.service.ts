@@ -1,7 +1,7 @@
 import { prisma } from "../../lib/prisma";
 
 const createOrder = async (payload: any, customerId: string) => {
-  const { items, shippingAddress } = payload;
+  const { items, shippingAddress, paymentMethod } = payload;
 
   const medicineIds = items.map((item: any) => item.medicineId);
   const medicines = await prisma.medicine.findMany({
@@ -56,7 +56,7 @@ const createOrder = async (payload: any, customerId: string) => {
         sellerId: sellerId,
         totalAmount: totalAmount,
         shippingAddress: shippingAddress,
-        paymentMethod: "COD",
+        paymentMethod,
         paymentStatus: "PENDING",
         items: {
           create: sellerItems.map((item) => ({

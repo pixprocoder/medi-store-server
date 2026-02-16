@@ -23,7 +23,7 @@ const createOrder = async (req: Request, res: Response) => {
     sendResponse(res, {
       statusCode: StatusCodes.BAD_REQUEST,
       success: false,
-      message: "Failed Crete Order",
+      message: `${e || "Failed Create Order"} `,
     });
   }
 };

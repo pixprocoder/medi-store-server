@@ -8,7 +8,7 @@ const createReview = async (req: Request, res: Response) => {
     const user = req.user;
     if (!user) {
       return res.status(400).json({
-        error: "Unauthorized!",
+        error: "You Are Unauthorized!",
       });
     }
 
@@ -16,7 +16,7 @@ const createReview = async (req: Request, res: Response) => {
     const result = await reviewService.createReview(
       req.body,
       id as string,
-      user.id as string,
+      user,
     );
 
     sendResponse(res, {
@@ -29,7 +29,7 @@ const createReview = async (req: Request, res: Response) => {
     sendResponse(res, {
       statusCode: StatusCodes.BAD_REQUEST,
       success: false,
-      message: `${e} ` || "Review Add Fail",
+      message: `${e || "Failed to add review"}`,
     });
   }
 };
@@ -60,7 +60,7 @@ const getMedicineReviews = async (req: Request, res: Response) => {
     sendResponse(res, {
       statusCode: StatusCodes.BAD_REQUEST,
       success: false,
-      message: `${e} ` || "Review add Fail",
+      message: `${e || "Review add Fail"} `,
     });
   }
 };

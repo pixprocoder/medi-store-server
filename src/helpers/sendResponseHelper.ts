@@ -1,19 +1,5 @@
 import { Response } from "express";
-
-type IPaginationMeta = {
-  page: number;
-  limit: number;
-  total: number;
-  totalPages: number;
-};
-
-type IApiResponse<T> = {
-  statusCode: number;
-  success: boolean;
-  message?: string;
-  meta?: IPaginationMeta;
-  data?: T;
-};
+import { IApiResponse } from "../types/apiResponse";
 
 const sendResponse = <T>(res: Response, data: IApiResponse<T>): void => {
   const responseData: IApiResponse<T> = {

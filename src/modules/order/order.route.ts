@@ -18,7 +18,7 @@ router.get(
 );
 // post routes
 router.post(
-  "/:id",
+  "/",
   authMiddleware(UserRole.CUSTOMER),
   orderController.createOrder,
 );
