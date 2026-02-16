@@ -19,6 +19,9 @@ const getSingleMedicine = async (id: string) => {
     where: {
       id,
     },
+    include: {
+      reviews: true,
+    },
   });
   return result;
 };

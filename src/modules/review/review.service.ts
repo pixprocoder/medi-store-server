@@ -1,10 +1,13 @@
+import { UserRole } from "../../constants/user";
 import { prisma } from "../../lib/prisma";
+import { IUser } from "../../types";
 
-const createReview = async (
-  payload: any,
-  medicineId: string,
-  customerId: string,
-) => {
+const createReview = async (payload: any, medicineId: string, user: IUser) => {
+  const { role, id: customerId } = user;
+  if (user.role !== UserRole.CUSTOMER) {
+    throw new Error("Only Customers Can Review");
+  }
+
   const existingReview = await prisma.review.findUnique({
     where: {
       customerId_medicineId: {
@@ -15,7 +18,7 @@ const createReview = async (
   });
 
   if (existingReview) {
-    throw new Error("You have already reviewed this medicine");
+    throw new Error("You can review once per Medicine!");
   }
 
   // check order success
@@ -32,7 +35,7 @@ const createReview = async (
   });
 
   if (!deliveredOrder) {
-    throw new Error("You can only review medicines from delivered orders");
+    throw new Error("Your medicine status is not DELIVERED!");
   }
 
   const review = await prisma.review.create({
