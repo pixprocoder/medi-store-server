@@ -2,7 +2,7 @@ import { UserRole } from "../../constants/user";
 import { prisma } from "../../lib/prisma";
 import { IUser } from "../../types";
 
-const createReview = async (payload: any, medicineId: string, user: IUser) => {
+const createReview = async (payload: any, medicineId: string, user: any) => {
   const { role, id: customerId } = user;
   if (user.role !== UserRole.CUSTOMER) {
     throw new Error("Only Customers Can Review");

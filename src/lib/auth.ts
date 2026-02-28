@@ -8,6 +8,20 @@ export const auth = betterAuth({
   baseURL: config.auth.better_auth_base_url || "http://localhost:6006",
   trustedOrigins: [config.app_url! || "http://localhost:3000"],
 
+  session: {
+    cookieCache: {
+      enabled: true,
+      maxAge: 60 * 60 * 24 * 7,
+    },
+  },
+  advanced: {
+    defaultCookieAttributes: {
+      secure: true,
+      sameSite: "none",
+      httpOnly: true,
+    },
+  },
+
   database: prismaAdapter(prisma, {
     provider: "postgresql",
   }),
