@@ -45,7 +45,7 @@ const getOwnOrders = async (req: Request, res: Response) => {
     sendResponse(res, {
       statusCode: StatusCodes.BAD_REQUEST,
       success: false,
-      message: `${e}` || "Failed To Fetch Order",
+      message: `${e} || "Failed To Fetch Order"`,
     });
   }
 };

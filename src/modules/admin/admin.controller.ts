@@ -32,15 +32,15 @@ const updateUserStatus = async (req: Request, res: Response) => {
     if (!user) {
       throw new Error("user is required");
     }
-
     const { id } = req.params;
-
-    //@ts-ignore
-    const result = await adminService.updateUserStatus(req.body, user, id);
+    if (!id) {
+      throw new Error("user is required");
+    }
+    const result = await adminService.updateUserStatus(req.body, id as string);
 
     sendResponse(res, {
       statusCode: StatusCodes.OK,
-      message: "Update Successfully",
+      message: "Status Update Successfully",
       success: true,
       data: result,
     });
@@ -48,7 +48,7 @@ const updateUserStatus = async (req: Request, res: Response) => {
     sendResponse(res, {
       statusCode: StatusCodes.BAD_REQUEST,
       success: false,
-      message: `${e}` || "Failed to update",
+      message: `${e} ` || "Failed to update",
     });
   }
 };
