@@ -17,11 +17,7 @@ const getAllUser = async () => {
 
   return result;
 };
-const updateUserStatus = async (
-  payload: any,
-  adminUser: IUser,
-  targetUserId: string,
-) => {
+const updateUserStatus = async (payload: any, targetUserId: string) => {
   const targetUser = await prisma.user.findUnique({
     where: { id: targetUserId },
   });
@@ -31,7 +27,7 @@ const updateUserStatus = async (
   }
 
   if (targetUser.role === UserRole.ADMIN) {
-    throw new Error("Cannot ban admin users");
+    throw new Error("Cannot ban/suspend admin users");
   }
 
   if (targetUser.role === UserRole.CUSTOMER) {

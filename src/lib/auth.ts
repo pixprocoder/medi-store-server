@@ -7,6 +7,7 @@ import { UserRole } from "../constants/user";
 export const auth = betterAuth({
   baseURL: config.auth.better_auth_base_url || "http://localhost:6006",
   trustedOrigins: [config.app_url! || "http://localhost:3000"],
+
   database: prismaAdapter(prisma, {
     provider: "postgresql",
   }),

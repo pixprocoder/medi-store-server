@@ -35,7 +35,8 @@ app.use(express.urlencoded({ extended: true, limit: "10mb" }));
 // CORS configuration
 app.use(
   cors({
-    origin: config.app_url || "http://localhost:3000",
+    // origin: [`${config.app_url}`, "http://localhost:3000"],
+    origin: "http://localhost:3000",
     credentials: true,
     methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
     allowedHeaders: ["Content-Type", "Authorization"],
